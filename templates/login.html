@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - StudyLab</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Font Awesome (untuk ikon tombol) -->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <!-- Styles CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{% url 'index' %}">StudyLab</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Login Section -->
+<section class="ftco-section">
+   <div class="container">
+      <div class="row justify-content-center">
+         <div class="col-md-6">
+          <div class="login-wrap">
+              <h3 class="mb-4 text-center">Sign In</h3>
+              <form method="POST" class="signin-form">
+                 {% csrf_token %}
+                 <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" class="form-control" placeholder="Username" required>
+                 </div>
+                 <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="form-control" placeholder="Password" required>
+                 </div>
+                 {% if error %}
+                    <p class="text-danger">{{ error }}</p>
+                 {% endif %}
+                 <div class="form-group text-center mt-3">
+                     <button type="submit" class="btn btn-primary submit">
+                         <span class="fa fa-paper-plane"></span> Login
+                     </button>
+                 </div>
+              </form>
+              <p class="text-center mt-2">
+                  Don't have an account? <a href="/register/">Register</a>
+              </p>
+          </div>
+      </div>
+   </div>
+</div>
+</section>
+
+<!-- Bootstrap JS -->
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
